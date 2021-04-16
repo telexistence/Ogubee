@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src='https://aframe.io/releases/1.0.4/aframe.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/aframe-stereo-component@0.6.0/dist/aframe-stereo-component.min.js'></script>
+    <script src='https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js'></script>
+    
+    <script src='./operator.js'></script>
+    <title>Operator</title>
+</head>
+<body>
+    <a-scene id='scene' vr-mode-ui="enabled: false">
+        <a-assets>
+            <video id='webcam' autoplay playsinlines crossorigin='anonymous'></video>
+        </a-assets>
+<!--
+        <a-sky transparent='true' radius = 10 src='./resource/sky.png'></a-sky>
+ -->        
+        <a-sky color="#ffffff"></a-sky> 
+        <a-entity id="ctlL" laser-controls="hand: left" >
+            <!--
+            <a-entity position='0 0.05 0'rotation="270 0 0">
+                <a-gui-label 
+                    id = 'backbutton'
+                    width="0.18" height="0.10"
+                    onclick="onBackClick"
+                    value="Back"
+                    font-family="Arial"
+                    font-size = "24px"
+                    font-color="000000"
+                    background-color="#afafaf">
+                </a-gui-label>
+            </a-entity>
+ --> 
+        </a-entity>
+        <a-entity id="ctlR" laser-controls="hand: right"></a-entity> 
+        <a-entity id='hmd' camera look-controls hmd-tracking position="0 0 0" stereocam="eye:left;">
+            <a-plane id='left' width='100' height='28.125' stereo='eye:left' position='25 0 -30'
+                webcam-material='
+                    screenSize:2560 720;
+                    screenCount:2 1;
+                    f:700.184 700.184;
+                    k:-0.170922,0.0267813;
+                    offset:0 0;'>
+            </a-plane>
+            <a-plane id='right' width='100' height='28.125' stereo='eye:right' position='25 0 -30'
+                webcam-material='
+                    screenSize:2560 720;
+                    screenCount:2 1;
+                    f:700.184 700.184;
+                    k:-0.170922,0.0267813;
+                    offset:0.5 0;'>
+            </a-plane>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
